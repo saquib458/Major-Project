@@ -1,4 +1,4 @@
-package com.Ecommerce.Backend.Application.controller;
+package com.Ecommerce.Backend.Application.ReferenceController;
 
 
 
@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashSet;
+import java.util.Objects;
 
 @RestController
 public class UserDetailsController {
@@ -27,7 +28,7 @@ public class UserDetailsController {
     @PostMapping("/seller_details")
     public ResponseEntity<Object> savedSellerDetails(@RequestBody Seller seller)
     {
-        User user = userRepo.findById(5L).get();
+        User user = userRepo.findById(6L).get();
 
         Seller newSeller= new Seller();
 
@@ -48,7 +49,7 @@ public class UserDetailsController {
     @PostMapping("/customer_details")
     public ResponseEntity<Object> savedCustomerDetails(@RequestBody Customer customer)
     {
-        User user = userRepo.findById(5L).get();
+        User user = userRepo.findById(6L).get();
 
         Customer newCustomer=new Customer();
 
@@ -69,7 +70,7 @@ public class UserDetailsController {
     @PostMapping("/user_address")
     public ResponseEntity<Object> savedUserAddress(@RequestBody Address address)
     {
-        User user = userRepo.findById(1L).get();
+        User user = userRepo.findById(2L).get();
 
         Address newAddress=new Address();
 
@@ -96,7 +97,13 @@ public class UserDetailsController {
     @GetMapping("/user_details")
     public ResponseEntity<Object> userDetails()
     {
-        User user=userRepo.findById(1L).get();
+        User user=new User();
+        if(!(Objects.isNull(userRepo.findByEmail(("user1@gmail.com"))))) {
+            System.out.println("hello");
+            user =userRepo.findByEmail("user1@gmail.com");
+
+
+        }else
         System.out.println(user.getAddresses());
         return ResponseHandler.generateResponse("Successfully added data!", HttpStatus.OK, user);
 
