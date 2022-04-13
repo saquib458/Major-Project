@@ -1,6 +1,8 @@
 package com.Ecommerce.Backend.Application.entities;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -10,6 +12,8 @@ public class Customer {
     @Column(name="user_id")
     private long id;
 
+
+    @JsonIgnore
     @OneToOne(cascade = CascadeType.ALL)
     @MapsId
     @JoinColumn(name ="user_id")

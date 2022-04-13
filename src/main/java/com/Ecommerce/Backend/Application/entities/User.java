@@ -1,14 +1,22 @@
 package com.Ecommerce.Backend.Application.entities;
 
 
+import com.Ecommerce.Backend.Application.dtoClasses.customerDto;
+import com.Ecommerce.Backend.Application.dtoClasses.sellerDto;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
 import javax.persistence.*;
+import java.util.Collection;
 import java.util.Date;
 import java.util.Set;
 
 @Entity
-public class User {
+public class User implements UserDetails {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
     private String firstName;
@@ -19,6 +27,7 @@ public class User {
 
     private String email;
 
+    @JsonIgnore
     private String password;
 
     private Boolean is_Deleted;
@@ -87,8 +96,38 @@ public class User {
         this.email = email;
     }
 
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return roles;
+    }
+
     public String getPassword() {
         return password;
+    }
+
+    @Override
+    public String getUsername() {
+        return email;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return (!is_Deleted);
+    }  //true
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return (!is_Locked);
+    }  //true
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return (!is_Expired);
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return is_Active;
     }
 
     public void setPassword(String password) {
@@ -193,7 +232,39 @@ public class User {
                 ", roles=" + roles +
                 ", seller=" + seller +
                 ", customer=" + customer +
-                ", addresses=" + addresses +
                 '}';
     }
+
+    public sellerDto sellerDetails()
+    {
+
+        sellerDto dto=new sellerDto();
+
+        dto.setId(this.getId());
+        dto.setFirstName(this.getFirstName());
+        dto.setLastName(this.getLastName());
+        dto.setIs_Active(this.is_Active);
+        dto.setCompany_contact(this.getSeller().getCompany_contact());
+        dto.setCompany_name(this.getSeller().getCompany_name());
+
+        dto.setAddress(this.getAddresses());
+
+
+        return dto;
+
+
+    }
+
+    public customerDto customerDetails()
+    {
+        customerDto dto=new customerDto();
+
+        dto.setId(this.getId());
+        dto.setFirstName(this.getFirstName());
+        dto.setLastName(this.getLastName());
+        dto.setIs_Active(this.getIs_Active());
+        dto.setPhone_number(this.getCustomer().getContact());
+
+        return dto;
+ }
 }

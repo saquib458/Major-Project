@@ -1,15 +1,9 @@
-package com.Ecommerce.Backend.Application.entities;
+package com.Ecommerce.Backend.Application.dtoClasses;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.Ecommerce.Backend.Application.entities.User;
 
-import javax.persistence.*;
-
-@Entity
-public class Address {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+public class addressDto {
+    private  Long id;
 
     private String city;
 
@@ -19,25 +13,20 @@ public class Address {
 
     private String  address_line;
 
-
     private String zip_code;
 
     private String label;
 
-
-    @JsonIgnore
-    @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="user_id")
     private User user;
 
-    public Address() {
+    public addressDto() {
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -95,18 +84,5 @@ public class Address {
 
     public void setUser(User user) {
         this.user = user;
-    }
-
-    @Override
-    public String toString() {
-        return "Address{" +
-                "id=" + id +
-                ", city='" + city + '\'' +
-                ", state='" + state + '\'' +
-                ", country='" + country + '\'' +
-                ", address_line='" + address_line + '\'' +
-                ", zip_code='" + zip_code + '\'' +
-                ", label='" + label + '\'' +
-                '}';
     }
 }

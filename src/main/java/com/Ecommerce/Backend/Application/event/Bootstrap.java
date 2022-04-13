@@ -7,8 +7,10 @@ import com.Ecommerce.Backend.Application.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -50,29 +52,42 @@ public class Bootstrap implements ApplicationRunner {
         roleRepo.save(role3);
 
 
-        if(Objects.isNull(userRepo.findByEmail("user1@gmail.com")))
+
+        if(Objects.isNull(userRepo.findByEmail("saquibmohd458@gmail.com")))
         {
             Role role = roleRepo.findById(1l).get();
             Set<User> users = new HashSet<>();
 
-
-
-
             User user = new User();
             user.setId(1l);
-            user.setEmail("user1@gmail.com");
-            user.setFirstName("Peter");
-            user.setLastName("Parker");
+            user.setEmail("saquibmohd458@gmail.com");
+            user.setFirstName("Mohd");
+            user.setMiddleName("Saquib");
+            user.setLastName("Ansari");
+            user.setPassword(new BCryptPasswordEncoder().encode("S@quib1411"));
 
-             users.add(user);
+
+
+            users.add(user);
              role.setUsers(users);
 
              Set<Role> roles = new HashSet<>();
 
              roles.add(role);
              user.setRoles(roles);
+
+
+           user.setIs_Deleted(Boolean.FALSE);
+           user.setIs_Active(Boolean.TRUE);
+           user.setIs_Expired(Boolean.FALSE);
+           user.setIs_Locked(Boolean.FALSE);
+           user.setIs_Deleted(Boolean.FALSE);
+           user.setInvalid_attempt_count(0);
+           user.setPassword_update_date(new Date());
+
             System.out.println("hello");
             userRepo.save(user);
   }
+
     }
 }
