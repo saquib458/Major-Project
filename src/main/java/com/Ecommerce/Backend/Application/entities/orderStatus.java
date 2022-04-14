@@ -11,7 +11,7 @@ public class orderStatus {
 
         @Id
         @GeneratedValue(strategy = GenerationType.AUTO)
-        private Long id;
+        private long id;
 
 
         @JsonIgnore
