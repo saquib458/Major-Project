@@ -1,6 +1,8 @@
 package com.Ecommerce.Backend.Application.entities;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -12,11 +14,13 @@ public class product_reviews {
 
     private String rating;
 
+
+    @JsonIgnore
     @OneToOne
     @JoinColumn(name="customerUserId")
     @MapsId
     private Customer customer;
-
+    @JsonIgnore
     @OneToOne
     @JoinColumn(name="productId")
     @MapsId
@@ -64,4 +68,6 @@ public class product_reviews {
     public void setProduct(com.Ecommerce.Backend.Application.entities.product product) {
         this.product = product;
     }
+
+
 }

@@ -1,6 +1,8 @@
 package com.Ecommerce.Backend.Application.entities;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -25,10 +27,17 @@ public class product {
 
     private Boolean is_deleted;
 
+     @JsonIgnore
+    @ManyToOne(fetch= FetchType.LAZY)
+    @JoinColumn(name="seller_user_id",referencedColumnName = "user_id",nullable = false)
+    private  Seller seller;
+
+     @JsonIgnore
     @OneToOne
     @JoinColumn(name = "categoryId",referencedColumnName = "id")
     private category category;
 
+     @JsonIgnore
     @OneToMany
     @JoinColumn(name="productId",referencedColumnName = "id")
     private Set<product_variation> productVariations;
@@ -115,5 +124,13 @@ public class product {
 
     public void setProductVariations(Set<product_variation> productVariations) {
         this.productVariations = productVariations;
+    }
+
+    public Seller getSeller() {
+        return seller;
+    }
+
+    public void setSeller(Seller seller) {
+        this.seller = seller;
     }
 }

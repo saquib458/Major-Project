@@ -25,6 +25,7 @@ public class product_variation {
 
     private String primaryImageName;
 
+
     public product_variation() {
     }
 
@@ -67,4 +68,5 @@ public class product_variation {
     public void setPrimaryImageName(String primaryImageName) {
         this.primaryImageName = primaryImageName;
     }
+
 }

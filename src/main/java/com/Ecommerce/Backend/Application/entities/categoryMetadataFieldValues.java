@@ -1,6 +1,8 @@
 package com.Ecommerce.Backend.Application.entities;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -12,10 +14,12 @@ public class categoryMetadataFieldValues {
 
     private String value;
 
+    @JsonIgnore
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="categoryId",referencedColumnName = "id",nullable = false)
     private category category;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name ="categoryMetadataId",referencedColumnName = "id",nullable = false)
     private categoryMetadataField categoryMetadataField;
