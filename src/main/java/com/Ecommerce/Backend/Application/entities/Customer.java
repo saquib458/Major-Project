@@ -1,6 +1,7 @@
 package com.Ecommerce.Backend.Application.entities;
 
 
+import com.Ecommerce.Backend.Application.dtoClasses.customerDetailsDto;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
@@ -61,6 +62,19 @@ public class Customer {
                 "id=" + id +
                 ", contact='" + contact + '\'' +
                 '}';
+    }
+
+    public  customerDetailsDto list()
+    {
+        customerDetailsDto customerDetail=new customerDetailsDto();
+
+        customerDetail.setId(this.getId());
+        customerDetail.setName(this.getUser().getFirstName()+" "+this.getUser().getLastName());
+        customerDetail.setEmail(this.getUser().getEmail());
+        customerDetail.setIs_Active(this.getUser().getIs_Active());
+
+        return customerDetail;
+
     }
 
 

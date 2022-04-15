@@ -4,10 +4,7 @@ package com.Ecommerce.Backend.Application.controller;
 import com.Ecommerce.Backend.Application.service.adminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PatchMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/admin")
@@ -28,7 +25,16 @@ public class adminController {
         return adminService.deActivateUser(username);
     }
 
+   @GetMapping("/list/customers")
+    public ResponseEntity<Object> listCustomers()
+   {
+       return  adminService.listOfCustomers();
+   }
 
-
+    @GetMapping("/list/sellers")
+    public ResponseEntity<Object> listSellers()
+    {
+        return  adminService.listOfSellers();
+    }
 
 }

@@ -1,5 +1,7 @@
 package com.Ecommerce.Backend.Application.response;
 
+import com.Ecommerce.Backend.Application.dtoClasses.customerDetailsDto;
+import com.Ecommerce.Backend.Application.dtoClasses.sellerDetailsDto;
 import com.Ecommerce.Backend.Application.entities.Customer;
 import com.Ecommerce.Backend.Application.entities.User;
 import org.springframework.http.HttpStatus;
@@ -50,6 +52,7 @@ public class ResponseHandler {
 
         return new ResponseEntity<Object>(map, HttpStatus.valueOf(HttpStatus.OK.value()));
     }
+
 
 }
 

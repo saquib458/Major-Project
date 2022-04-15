@@ -1,7 +1,13 @@
 package com.Ecommerce.Backend.Application.service;
 
 
+import com.Ecommerce.Backend.Application.dtoClasses.customerDetailsDto;
+import com.Ecommerce.Backend.Application.dtoClasses.sellerDetailsDto;
+import com.Ecommerce.Backend.Application.entities.Customer;
+import com.Ecommerce.Backend.Application.entities.Seller;
 import com.Ecommerce.Backend.Application.entities.User;
+import com.Ecommerce.Backend.Application.repository.CustomerRepository;
+import com.Ecommerce.Backend.Application.repository.SellerRepository;
 import com.Ecommerce.Backend.Application.repository.UserRepository;
 import com.Ecommerce.Backend.Application.response.ResponseHandler;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,12 +15,21 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class adminService {
     @Autowired
     private emailSenderService senderService;
     @Autowired
     UserRepository userRepo;
+
+    @Autowired
+    CustomerRepository customerRepo;
+
+    @Autowired
+    SellerRepository sellerRepo;
 
 
     public ResponseEntity<Object> activateUser(String username)
@@ -63,4 +78,43 @@ public class adminService {
 
     }
 
+    public ResponseEntity<Object> listOfCustomers()
+    {
+        List<Customer> customerList=customerRepo.findAll();
+
+        if(customerList.isEmpty())
+            return ResponseHandler.generateResponse3("No customer register yet !!!! ", HttpStatus.OK, "null");
+
+        List<customerDetailsDto> customerDetailsDtos=new ArrayList<>();
+        for (Customer customer:customerList
+             ) {
+            customerDetailsDtos.add(customer.list());
+
+        }
+        return ResponseHandler.generateResponse("Customers List ", HttpStatus.OK, customerDetailsDtos);
+
+
+
+    }
+
+
+    public ResponseEntity<Object> listOfSellers() {
+
+    List<Seller> sellerList=sellerRepo.findAll();
+
+    if(sellerList.isEmpty())
+        return ResponseHandler.generateResponse3("No Seller register yet !!!! ", HttpStatus.OK, "null");
+
+    List<sellerDetailsDto> sellerDetailsDtos=new ArrayList<>();
+
+    for(Seller seller:sellerList)
+    {
+        sellerDetailsDtos.add(seller.list());
+    }
+
+        return ResponseHandler.generateResponse("Sellers List ", HttpStatus.OK, sellerDetailsDtos);
+
+
+
+    }
 }

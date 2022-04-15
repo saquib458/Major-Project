@@ -1,6 +1,7 @@
 package com.Ecommerce.Backend.Application.entities;
 
 
+import com.Ecommerce.Backend.Application.dtoClasses.sellerDetailsDto;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
@@ -70,5 +71,21 @@ public class Seller {
                 ", company_name='" + company_name + '\'' +
                 ", company_contact='" + company_contact + '\'' +
                 '}';
+    }
+
+    public sellerDetailsDto list()
+ {
+
+    sellerDetailsDto sellerDetail=new sellerDetailsDto();
+
+    sellerDetail.setId(this.getUser().getId());
+    sellerDetail.setName(this.getUser().getFirstName()+" "+this.getUser().getLastName());
+    sellerDetail.setEmail(this.getUser().getEmail());
+    sellerDetail.setIs_active(this.getUser().getIs_Active());
+    sellerDetail.setCompany_name(this.getUser().getSeller().getCompany_name());
+    sellerDetail.setAddress(this.getUser().getAddresses());
+    sellerDetail.setCompany_contact(this.getUser().getSeller().getCompany_contact());
+
+    return sellerDetail;
     }
 }

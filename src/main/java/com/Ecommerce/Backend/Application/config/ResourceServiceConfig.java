@@ -29,7 +29,9 @@ public class ResourceServiceConfig extends ResourceServerConfigurerAdapter {
                 .mvcMatchers(HttpMethod.POST,"/add/address").hasRole("CUSTOMER")
                 .mvcMatchers(HttpMethod.GET,"/view/addresses").hasRole("CUSTOMER")
                 .mvcMatchers(HttpMethod.DELETE,"/delete/address/{id}").hasRole("CUSTOMER")
-                .mvcMatchers(HttpMethod.PATCH,"/admin/**").hasRole("ADMIN").mvcMatchers(HttpMethod.POST,"/register").permitAll()
+                .mvcMatchers(HttpMethod.PATCH,"/admin/**").hasRole("ADMIN").
+                mvcMatchers(HttpMethod.GET,"/admin/**").hasRole("ADMIN").
+                mvcMatchers(HttpMethod.POST,"/register").permitAll()
                 .mvcMatchers("/logout").permitAll()
                 .and().csrf().disable().logout().logoutSuccessUrl("/logout/successfully");
 
