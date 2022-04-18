@@ -23,7 +23,7 @@ public class ResourceServiceConfig extends ResourceServerConfigurerAdapter {
     public void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests().mvcMatchers(HttpMethod.POST,"").hasAnyRole("SELLER","ADMIN","CUSTOMER")
                 .mvcMatchers(HttpMethod.GET,"/current/user").hasAnyRole("SELLER","ADMIN","CUSTOMER")
-                .mvcMatchers(HttpMethod.GET,"/profile").hasAnyRole("SELLER","CUSTOMER")
+                .mvcMatchers(HttpMethod.GET,"/profile","/view/product/{id}","/view/allproduct").hasAnyRole("SELLER","CUSTOMER")
                 .mvcMatchers(HttpMethod.PATCH,"/update/profile","/update/password").hasAnyRole("SELLER","CUSTOMER")
                 .mvcMatchers(HttpMethod.PATCH,"/update/address/{id}").hasRole("SELLER")
                 .mvcMatchers(HttpMethod.POST,"/add/address").hasRole("CUSTOMER")
@@ -31,6 +31,7 @@ public class ResourceServiceConfig extends ResourceServerConfigurerAdapter {
                 .mvcMatchers(HttpMethod.DELETE,"/delete/address/{id}").hasRole("CUSTOMER")
                 .mvcMatchers(HttpMethod.PATCH,"/admin/**").hasRole("ADMIN").
                 mvcMatchers(HttpMethod.GET,"/admin/**").hasRole("ADMIN").
+                mvcMatchers(HttpMethod.POST,"/admin/**").hasRole("ADMIN").
                 mvcMatchers(HttpMethod.POST,"/register").permitAll()
                 .mvcMatchers("/logout").permitAll()
                 .and().csrf().disable().logout().logoutSuccessUrl("/logout/successfully");

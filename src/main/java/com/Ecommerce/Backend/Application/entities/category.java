@@ -15,7 +15,7 @@ public class category
 
     private String categoryName;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name="parentCategoryId",referencedColumnName = "id")
     @JsonIgnore
     private category category;

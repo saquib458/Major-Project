@@ -69,6 +69,17 @@ public class UserController {
     }
 
 
+    @GetMapping("/view/product/{id}")
+    public ResponseEntity<Object> viewProduct(@PathVariable long id)
+    {
+        return userService.viewProduct(id);
+    }
+
+    @GetMapping("/view/allproduct")
+    public ResponseEntity<Object> viewAllProduct()
+    {
+        return userService.viewAllProduct();
+    }
 
 
 }
