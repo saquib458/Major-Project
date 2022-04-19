@@ -31,7 +31,7 @@ public class categoryMetadataFieldService {
             return ResponseHandler.generateResponse3("category Metadata field added successfully !!!", HttpStatus.OK, "null");
 
         }
-        return ResponseHandler.generateResponse3("You entered duplicate Metadata field name", HttpStatus.OK, "null");
+        return ResponseHandler.generateResponse3("You entered duplicate Metadata field name", HttpStatus.BAD_REQUEST, "null");
 
     }
 
@@ -43,7 +43,7 @@ public class categoryMetadataFieldService {
 
         if(categoryMetadataFieldList.isEmpty())
         {
-            return ResponseHandler.generateResponse3("There is no Category Metadata Field added yet please add first to view !!! ", HttpStatus.OK, "null");
+            return ResponseHandler.generateResponse3("There is no Category Metadata Field added yet please add first to view !!! ", HttpStatus.NO_CONTENT, "null");
 
         }
 

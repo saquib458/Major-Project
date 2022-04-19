@@ -31,7 +31,7 @@ public class accountActivationService {
         if(user!=null){
 
             if(user.getSeller()!=null) {
-                return ResponseHandler.generateResponse3("You can't activate the seller account by yourself please contact to admin!!!", HttpStatus.OK, "null");
+                return ResponseHandler.generateResponse3("You can't activate the seller account by yourself please contact to admin!!!", HttpStatus.BAD_REQUEST, "null");
             }
 
 

@@ -50,14 +50,14 @@ public class adminService {
 
         }
         else
-            return ResponseHandler.generateResponse3("User Not Found by given Username !!!! ", HttpStatus.OK, "null");
+            return ResponseHandler.generateResponse3("User Not Found by given Username !!!! ", HttpStatus.BAD_REQUEST, "null");
 
     }
 
     public ResponseEntity<Object> deActivateUser(String username)
     {
         if(username.equals("saquibmohd458@gmail.com"))
-            return ResponseHandler.generateResponse3("Yoy Don't Deactivate the Main admin user !!!! ", HttpStatus.OK, "null");
+            return ResponseHandler.generateResponse3("You Don't Deactivate the Main admin user !!!! ", HttpStatus.OK, "null");
 
         User user=userRepo.findByEmail(username);
 
@@ -74,7 +74,7 @@ public class adminService {
 
         }
         else
-            return ResponseHandler.generateResponse3("User Not Found by given Username !!!! ", HttpStatus.OK, "null");
+            return ResponseHandler.generateResponse3("User Not Found by given Username !!!! ", HttpStatus.BAD_REQUEST, "null");
 
     }
 
@@ -83,7 +83,7 @@ public class adminService {
         List<Customer> customerList=customerRepo.findAll();
 
         if(customerList.isEmpty())
-            return ResponseHandler.generateResponse3("No customer register yet !!!! ", HttpStatus.OK, "null");
+            return ResponseHandler.generateResponse3("No customer register yet !!!! ", HttpStatus.NO_CONTENT, "null");
 
         List<customerDetailsDto> customerDetailsDtos=new ArrayList<>();
         for (Customer customer:customerList
@@ -103,7 +103,7 @@ public class adminService {
     List<Seller> sellerList=sellerRepo.findAll();
 
     if(sellerList.isEmpty())
-        return ResponseHandler.generateResponse3("No Seller register yet !!!! ", HttpStatus.OK, "null");
+        return ResponseHandler.generateResponse3("No Seller register yet !!!! ", HttpStatus.NO_CONTENT, "null");
 
     List<sellerDetailsDto> sellerDetailsDtos=new ArrayList<>();
 

@@ -53,33 +53,33 @@ public class userService {
 
         bool=validation.isValidPassword(dto.getPassword());
         if(bool==false)
-            return ResponseHandler.generateResponse3("Password should contain atLeast 8 characters and  '1 uppercase' '1 lowercase'  ' 1 special character ' and ' 1 numeric digit' !!!!!!!", HttpStatus.OK, "null");
+            return ResponseHandler.generateResponse3("Password should contain atLeast 8 characters and  '1 uppercase' '1 lowercase'  ' 1 special character ' and ' 1 numeric digit' !!!!!!!", HttpStatus.NOT_ACCEPTABLE, "null");
 
         str = validation.matchesPasswordAndConfirmPassword(dto);
         if(str!=null)
-            return ResponseHandler.generateResponse3(str, HttpStatus.BAD_REQUEST,"null") ;
+            return ResponseHandler.generateResponse3(str, HttpStatus.NOT_ACCEPTABLE,"null") ;
 
 
 
         str = validation.checkMailIsUnique(dto);
-            if(str!=null)
-                return ResponseHandler.generateResponse3(str, HttpStatus.BAD_REQUEST,"null") ;
+        if(str!=null)
+            return ResponseHandler.generateResponse3(str, HttpStatus.NOT_ACCEPTABLE,"null") ;
 
          if(dto.getPhone_number()==null&&dto.getCompany_contact()==null)
-             return ResponseHandler.generateResponse3("Contact number not be null !!!", HttpStatus.MULTI_STATUS,"null") ;
+             return ResponseHandler.generateResponse3("Contact number not be null !!!", HttpStatus.NOT_ACCEPTABLE,"null") ;
 
 
 
         if(dto.getPhone_number()!=null) {
             bool = validation.isValidMobileNo(dto.getPhone_number());
             if (bool == false)
-                return ResponseHandler.generateResponse3("Mobile number is not valid", HttpStatus.BAD_REQUEST,"null") ;
+                return ResponseHandler.generateResponse3("Mobile number is not valid", HttpStatus.NOT_ACCEPTABLE,"null") ;
 
         }
 
          bool= validation.isValidEmail(dto.getEmail());
         if(bool==false)
-            return ResponseHandler.generateResponse3("Email is not valid", HttpStatus.BAD_REQUEST,"null") ;
+            return ResponseHandler.generateResponse3("Email is not valid", HttpStatus.NOT_ACCEPTABLE,"null") ;
 
 
 
@@ -87,11 +87,11 @@ public class userService {
         {
             bool=validation.isValidMobileNo(dto.getCompany_contact());
             if(bool==false)
-                return ResponseHandler.generateResponse3("Company contact is not valid", HttpStatus.BAD_REQUEST,"null") ;
+                return ResponseHandler.generateResponse3("Company contact is not valid", HttpStatus.NOT_ACCEPTABLE,"null") ;
 
 
             if(!(Objects.isNull(sellerRepo.findByGst(dto.getGst()))))
-                return ResponseHandler.generateResponse3("Please enter unique GST number", HttpStatus.BAD_REQUEST,"null") ;
+                return ResponseHandler.generateResponse3("Please enter unique GST number", HttpStatus.NOT_ACCEPTABLE,"null") ;
 
 
            if(!(Objects.isNull(sellerRepo.findBycompany_name(dto.getCompany_name()))))
@@ -99,7 +99,7 @@ public class userService {
 
 
                 if(dto.getCompany_name()==null)
-                    return ResponseHandler.generateResponse3("Company name not be empty", HttpStatus.BAD_REQUEST,"null") ;
+                    return ResponseHandler.generateResponse3("Company name not be empty", HttpStatus.NOT_ACCEPTABLE,"null") ;
 
         }
 
@@ -179,7 +179,7 @@ public class userService {
                 if (dto.getCompany_name() != null) {
                     if (!(Objects.isNull(sellerRepo.findBycompany_name(dto.getCompany_name()))))
                         return ResponseHandler.generateResponse3("please enter unique company name because given company name is already registered"
-                                , HttpStatus.OK, "null");
+                                , HttpStatus.BAD_REQUEST, "null");
                     user.getSeller().setCompany_name(dto.getCompany_name());
                 }
                 if (dto.getCompany_contact() != null) {
@@ -233,7 +233,7 @@ public class userService {
     public ResponseEntity<Object> viewProduct(long productId)
     {
         if(productRepo.findById(productId)==null)
-            return  ResponseHandler.generateResponse3("No product found for a given id !!!! ", HttpStatus.OK, "null");
+            return  ResponseHandler.generateResponse3("No product found for a given id !!!! ", HttpStatus.BAD_REQUEST, "null");
 
         product product=productRepo.findById(productId);
 
@@ -244,7 +244,7 @@ public class userService {
     public ResponseEntity<Object> viewAllProduct()
     {
         if(productRepo.findAll().isEmpty())
-            return  ResponseHandler.generateResponse3("No product found to display !!!! ", HttpStatus.OK, "null");
+            return  ResponseHandler.generateResponse3("No product found to display !!!! ", HttpStatus.BAD_REQUEST, "null");
 
         List<product> productList= productRepo.findAll();
 

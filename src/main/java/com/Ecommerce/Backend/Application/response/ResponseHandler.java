@@ -50,7 +50,7 @@ public class ResponseHandler {
         map.put("date",new Date());
 
 
-        return new ResponseEntity<Object>(map, HttpStatus.valueOf(HttpStatus.OK.value()));
+        return new ResponseEntity<Object>(map, status);
     }
 
 

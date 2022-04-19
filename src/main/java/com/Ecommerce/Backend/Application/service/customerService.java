@@ -106,11 +106,11 @@ public class customerService {
                     return ResponseHandler.generateResponse3("Address deleted Successfully !", HttpStatus.OK, "null");
                 }
 
-                return ResponseHandler.generateResponse3("You entered incorrect Address ID", HttpStatus.OK, "null");
+                return ResponseHandler.generateResponse3("You entered incorrect Address ID", HttpStatus.BAD_REQUEST, "null");
 
             }
 
-            return ResponseHandler.generateResponse3("You entered wrong Address ID", HttpStatus.OK, "null");
+            return ResponseHandler.generateResponse3("You entered wrong Address ID", HttpStatus.BAD_REQUEST, "null");
 
         }
 

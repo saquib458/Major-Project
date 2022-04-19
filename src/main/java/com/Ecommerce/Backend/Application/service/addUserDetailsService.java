@@ -126,7 +126,7 @@ public class addUserDetailsService {
 
             User savedUser=userRepo.save(newUser);
 
-            senderService.sendMail(newUser.getEmail(),"Registration !!!","welcome to the My Backend Application Service . This is your username "+newUser.getEmail()+" . Your Account is Deactivate .Please contact to the Admin to activate your Account.. Warm regards ");
+            senderService.sendMail(newUser.getEmail(),"Registration !!!","welcome to the My Backend Application Service . This is your username "+newUser.getEmail()+" . Your Account is in Deactivated state .Please contact to the Admin to activate your Account.. Warm regards ");
 
             return ResponseHandler.generateResponse3("Registration done Successfully !!!!!!!", HttpStatus.OK, "null");
 

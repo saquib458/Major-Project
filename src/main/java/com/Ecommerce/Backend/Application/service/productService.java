@@ -20,7 +20,7 @@ public class productService {
     public ResponseEntity<Object> viewProduct(long productId)
     {
         if(productRepo.findById(productId)==null)
-            return  ResponseHandler.generateResponse3("No product found for a given id !!!! ", HttpStatus.OK, "null");
+            return  ResponseHandler.generateResponse3("No product found for a given id !!!! ", HttpStatus.BAD_REQUEST, "null");
 
         product product=productRepo.findById(productId);
 
@@ -31,7 +31,7 @@ public class productService {
     public ResponseEntity<Object> viewAllProduct()
     {
         if(productRepo.findAll().isEmpty())
-            return  ResponseHandler.generateResponse3("No product found to display !!!! ", HttpStatus.OK, "null");
+            return  ResponseHandler.generateResponse3("No product found to display !!!! ", HttpStatus.BAD_REQUEST, "null");
 
         List<product> productList= productRepo.findAll();
 
@@ -42,7 +42,7 @@ public class productService {
     public ResponseEntity<Object> activateProduct(long productId)
     {
         if(productRepo.findById(productId)==null)
-            return  ResponseHandler.generateResponse3("No product found for a given id !!!! ", HttpStatus.OK, "null");
+            return  ResponseHandler.generateResponse3("No product found for a given id !!!! ", HttpStatus.BAD_REQUEST, "null");
 
 
         product product=productRepo.findById(productId);
@@ -63,7 +63,7 @@ public class productService {
     public ResponseEntity<Object> deActivateProduct(long productId)
     {
         if(productRepo.findById(productId)==null)
-            return  ResponseHandler.generateResponse3("No product found for a given id !!!! ", HttpStatus.OK, "null");
+            return  ResponseHandler.generateResponse3("No product found for a given id !!!! ", HttpStatus.BAD_REQUEST, "null");
 
 
         product product=productRepo.findById(productId);

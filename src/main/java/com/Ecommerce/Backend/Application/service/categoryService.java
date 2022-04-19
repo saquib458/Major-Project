@@ -31,7 +31,7 @@ public class categoryService {
     public ResponseEntity<Object> addCategory(categoryDto dto) {
         if(dto.getParentId()==0)
         {   if( categoryRepo.findByCategoryName(dto.getCategoryName())!=null)
-                return ResponseHandler.generateResponse3("category is already present!!!! ", HttpStatus.OK, "null");
+                return ResponseHandler.generateResponse3("category is already present!!!! ", HttpStatus.NOT_ACCEPTABLE, "null");
 
             category category = new category();
             category.setCategoryName(dto.getCategoryName());
@@ -46,17 +46,17 @@ public class categoryService {
 
             if (categoryNameList.isEmpty()) {
                 if(parentCategory.getCategoryName().equals(dto.getCategoryName()))
-                    return ResponseHandler.generateResponse3("category name is duplicate  in root level  !!!! ", HttpStatus.OK, "null");
+                    return ResponseHandler.generateResponse3("category name is duplicate  in root level  !!!! ", HttpStatus.NOT_ACCEPTABLE, "null");
 
                 while (parentCategory.getCategory()!=null)
                 {
                     if(parentCategory.getCategoryName().equals(dto.getCategoryName()))
-                        return ResponseHandler.generateResponse3("category name is duplicate  in root level !!!! ", HttpStatus.OK, "null");
+                        return ResponseHandler.generateResponse3("category name is duplicate  in root level !!!! ", HttpStatus.NOT_ACCEPTABLE, "null");
                     parentCategory=parentCategory.getCategory();
                 }
 
                 if(parentCategory.getCategoryName().equals(dto.getCategoryName()))
-                    return ResponseHandler.generateResponse3("category name is duplicate  in root level !!!! ", HttpStatus.OK, "null");
+                    return ResponseHandler.generateResponse3("category name is duplicate  in root level !!!! ", HttpStatus.NOT_ACCEPTABLE, "null");
 
 
                 category category = new category();
@@ -72,19 +72,19 @@ public class categoryService {
                 for (String str:categoryNameList
                      ) {
                     if(str.equals(dto.getCategoryName()))
-                        return ResponseHandler.generateResponse3("category name is duplicate  in breadth level !!!! ", HttpStatus.OK, "null");
+                        return ResponseHandler.generateResponse3("category name is duplicate  in breadth level !!!! ", HttpStatus.NOT_ACCEPTABLE, "null");
 
                 }
 
                 while (parentCategory.getCategory()!=null)
                 {
                     if(parentCategory.getCategoryName().equals(dto.getCategoryName()))
-                        return ResponseHandler.generateResponse3("category name is duplicate  in root level !!!! ", HttpStatus.OK, "null");
+                        return ResponseHandler.generateResponse3("category name is duplicate  in root level !!!! ", HttpStatus.NOT_ACCEPTABLE, "null");
                   parentCategory=parentCategory.getCategory();
                 }
 
                 if(parentCategory.getCategoryName().equals(dto.getCategoryName()))
-                    return ResponseHandler.generateResponse3("category name is duplicate  in root level !!!! ", HttpStatus.OK, "null");
+                    return ResponseHandler.generateResponse3("category name is duplicate  in root level !!!! ", HttpStatus.NOT_ACCEPTABLE, "null");
 
                 category category = new category();
                 category.setCategoryName(dto.getCategoryName());
@@ -97,14 +97,14 @@ public class categoryService {
             }
 
         }
-        return ResponseHandler.generateResponse3("category not found by given parent id !!!! ", HttpStatus.OK, "null");
+        return ResponseHandler.generateResponse3("category not found by given parent id !!!! ", HttpStatus.BAD_REQUEST, "null");
 
     }
 
     public ResponseEntity<Object> viewCategory(long id)
     {
         if(categoryRepo.findById(id)==null)
-            return ResponseHandler.generateResponse3("category not found by given id !!!! ", HttpStatus.OK, "null");
+            return ResponseHandler.generateResponse3("category not found by given id !!!! ", HttpStatus.BAD_REQUEST, "null");
 
         category category=categoryRepo.findById(id);
 
@@ -116,7 +116,7 @@ public class categoryService {
     public ResponseEntity<Object> viewAllCategory()
     {
         if(categoryRepo.findAll().isEmpty())
-            return ResponseHandler.generateResponse3("no category added yet!!!! ", HttpStatus.OK, "null");
+            return ResponseHandler.generateResponse3("no category added yet!!!! ", HttpStatus.NO_CONTENT, "null");
 
 
         return ResponseHandler.generateResponse("category List details !!!! ", HttpStatus.OK, categoryRepo.findAll());
@@ -126,12 +126,12 @@ public class categoryService {
 
     public ResponseEntity<Object> addCategoryMetadataFieldValues(categoryDto dto) {
         if(categoryMetadataFieldValuesRepo.findForUpdate(dto.getCategoryId(), dto.getMetaDataFieldId())!=null)
-            return  ResponseHandler.generateResponse3("you entered duplicate metadata field values please update the previous one !!! ", HttpStatus.OK, "null");
+            return  ResponseHandler.generateResponse3("you entered duplicate metadata field values please update the previous one !!! ", HttpStatus.NOT_ACCEPTABLE, "null");
 
         if (categoryRepo.findById(dto.getCategoryId()) != null) {
 
             if (!(categoryMetadataFieldRepo.findById(dto.getMetaDataFieldId()).isPresent()))
-                return ResponseHandler.generateResponse3("category Metadata Field  not found by given id !!!! ", HttpStatus.OK, "null");
+                return ResponseHandler.generateResponse3("category Metadata Field  not found by given id !!!! ", HttpStatus.BAD_REQUEST, "null");
 
             categoryMetadataFieldValues categoryMetadataFieldValues = new categoryMetadataFieldValues();
 
@@ -145,7 +145,7 @@ public class categoryService {
 
 
         }
-        return ResponseHandler.generateResponse3("category not found by given id !!!! ", HttpStatus.OK, "null");
+        return ResponseHandler.generateResponse3("category not found by given id !!!! ", HttpStatus.BAD_REQUEST, "null");
 
 
     }
@@ -153,7 +153,7 @@ public class categoryService {
     public ResponseEntity<Object> updateCategoryMetadataFieldValues(categoryDto dto) {
 
         if(categoryMetadataFieldValuesRepo.findForUpdate(dto.getCategoryId(), dto.getMetaDataFieldId())==null)
-        return  ResponseHandler.generateResponse3("no Metadata Field Value exist to update!!!! ", HttpStatus.OK, "null");
+        return  ResponseHandler.generateResponse3("no Metadata Field Value exist to update!!!! ", HttpStatus.NO_CONTENT, "null");
 
         categoryMetadataFieldValues categoryMetadataFieldValues=categoryMetadataFieldValuesRepo.findForUpdate(dto.getCategoryId(), dto.getMetaDataFieldId());
         categoryMetadataFieldValues.setValue(categoryMetadataFieldValues.getValue()+","+dto.getValues());
