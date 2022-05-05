@@ -29,7 +29,7 @@ public class product {
 
      @JsonIgnore
     @ManyToOne(fetch= FetchType.LAZY)
-    @JoinColumn(name="seller_user_id",referencedColumnName = "user_id",nullable = false)
+    @JoinColumn(name="seller_user_id",referencedColumnName = "user_id")
     private  Seller seller;
 
      @JsonIgnore
@@ -43,7 +43,12 @@ public class product {
     private Set<product_variation> productVariations;
 
 
-    public product() {
+    public product(String name, String description, String brand, Boolean is_cancellable, Boolean is_returnable) {
+        this.name = name;
+        this.description = description;
+        this.is_cancellable = is_cancellable;
+        this.is_returnable = is_returnable;
+        this.brand = brand;
     }
 
     public long getId() {

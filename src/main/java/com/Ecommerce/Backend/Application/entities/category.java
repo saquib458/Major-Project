@@ -23,6 +23,10 @@ public class category
     public category() {
     }
 
+    public category(String categoryName) {
+        this.categoryName = categoryName;
+    }
+
     public long getId() {
         return id;
     }

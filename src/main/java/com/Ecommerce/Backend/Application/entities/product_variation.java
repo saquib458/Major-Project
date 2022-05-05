@@ -21,6 +21,8 @@ public class product_variation {
 
     private  float price;
 
+    private String metadata;
+
     private Boolean is_active;
 
     private String primaryImageName;
@@ -69,4 +71,11 @@ public class product_variation {
         this.primaryImageName = primaryImageName;
     }
 
+    public String getMetadata() {
+        return metadata;
+    }
+
+    public void setMetadata(String metadata) {
+        this.metadata = metadata;
+    }
 }

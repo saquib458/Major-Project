@@ -13,7 +13,7 @@ public class orderProduct {
     private long id;
 
     @JsonIgnore
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "order_id",referencedColumnName = "id")
     private orderTable orderTable;
 
