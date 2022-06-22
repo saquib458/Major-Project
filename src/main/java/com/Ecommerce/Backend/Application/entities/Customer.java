@@ -1,7 +1,7 @@
 package com.Ecommerce.Backend.Application.entities;
 
 
-import com.Ecommerce.Backend.Application.dtoClasses.customerDetailsDto;
+import com.Ecommerce.Backend.Application.dtoClasses.CustomerDetailsDto;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
@@ -64,9 +64,9 @@ public class Customer {
                 '}';
     }
 
-    public  customerDetailsDto list()
+    public CustomerDetailsDto list()
     {
-        customerDetailsDto customerDetail=new customerDetailsDto();
+        CustomerDetailsDto customerDetail=new CustomerDetailsDto();
 
         customerDetail.setId(this.getId());
         customerDetail.setName(this.getUser().getFirstName()+" "+this.getUser().getLastName());

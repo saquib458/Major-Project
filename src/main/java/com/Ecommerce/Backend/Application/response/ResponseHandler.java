@@ -1,9 +1,5 @@
 package com.Ecommerce.Backend.Application.response;
 
-import com.Ecommerce.Backend.Application.dtoClasses.customerDetailsDto;
-import com.Ecommerce.Backend.Application.dtoClasses.sellerDetailsDto;
-import com.Ecommerce.Backend.Application.entities.Customer;
-import com.Ecommerce.Backend.Application.entities.User;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 

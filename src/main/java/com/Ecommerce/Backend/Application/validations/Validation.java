@@ -1,7 +1,7 @@
 package com.Ecommerce.Backend.Application.validations;
 
 
-import com.Ecommerce.Backend.Application.dtoClasses.userDto;
+import com.Ecommerce.Backend.Application.dtoClasses.UserDto;
 import com.Ecommerce.Backend.Application.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -16,7 +16,7 @@ public class Validation {
     @Autowired
     UserRepository userRepo;
 
-    public  String matchesPasswordAndConfirmPassword(userDto dto)
+    public  String matchesPasswordAndConfirmPassword(UserDto dto)
     {
 
         if(!(dto.getPassword().equals(dto.getConfirm_password())))
@@ -25,7 +25,7 @@ public class Validation {
         return null;
     }
 
-    public String checkMailIsUnique(userDto dto)
+    public String checkMailIsUnique(UserDto dto)
     {
         if(!(Objects.isNull(userRepo.findByEmail(dto.getEmail()))))
             return "Please Enter unique Email";

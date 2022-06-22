@@ -23,13 +23,13 @@ public class Bootstrap implements ApplicationRunner {
     RoleRepository roleRepo;
 
     @Autowired
-    categoryRepo categoryRepo;
+    CategoryRepo categoryRepo;
 
     @Autowired
-    productRepo productRepo;
+    ProductRepo productRepo;
 
     @Autowired
-    product_variationRepo productVariationRepo;
+    Product_variationRepo productVariationRepo;
 
 
     public void createRoles()
@@ -164,64 +164,64 @@ public class Bootstrap implements ApplicationRunner {
             roles.clear();
 
 
-            category electronics = new category("Electronics");
+            Category electronics = new Category("Electronics");
             electronics.setCategory(null);
             categoryRepo.save(electronics);
 
 
-            category phone = new category("Mobiles");
+            Category phone = new Category("Mobiles");
             phone.setCategory(electronics);
             categoryRepo.save(phone);
 
-            category fashion = new category("Fashion");
+            Category fashion = new Category("Fashion");
             categoryRepo.save(fashion);
 
 
-            category shoes = new category("Shoes");
+            Category shoes = new Category("Shoes");
             shoes.setCategory(fashion);
             categoryRepo.save(shoes);
 
-            category boots = new category("Boots");
+            Category boots = new Category("Boots");
             boots.setCategory(shoes);
             categoryRepo.save(boots);
 
 
-            category shirts = new category("Shirts");
+            Category shirts = new Category("Shirts");
             shirts.setCategory(fashion);
             categoryRepo.save(shirts);
 
-            category jeans = new category("Jeans");
+            Category jeans = new Category("Jeans");
             jeans.setCategory(fashion);
             categoryRepo.save(jeans);
 
-            category toys = new category("Toys");
+            Category toys = new Category("Toys");
             categoryRepo.save(toys);
 
-            category footwear = new category("Footwear");
+            Category footwear = new Category("Footwear");
             categoryRepo.save(footwear);
 
-            category accessories = new category("Accessories");
+            Category accessories = new Category("Accessories");
             categoryRepo.save(accessories);
 
-            category grocery = new category("Grocery");
+            Category grocery = new Category("Grocery");
             categoryRepo.save(grocery);
 
-            category watches = new category("Watches");
+            Category watches = new Category("Watches");
             categoryRepo.save(watches);
 
-            category books = new category("Books");
+            Category books = new Category("Books");
             categoryRepo.save(books);
 
-            Set<product_variation> productVariationSet =new HashSet<>();
+            Set<Product_variation> productVariationSet =new HashSet<>();
 
-            product_variation variation = new product_variation();
+            Product_variation variation = new Product_variation();
             variation.setPrice(100000.0f);
             variation.setQuantityAvailable(5);
             productVariationRepo.save(variation);
 
             productVariationSet.add(variation);
 
-            product product = new product("iphone 11", "Double camera System", "Apple", false, false);
+            Product product = new Product("iphone 11", "Double camera System", "Apple", false, false);
             product.setSeller(seller1.getSeller());
             product.setCategory(phone);
             product.setIs_active(true);
@@ -231,13 +231,13 @@ public class Bootstrap implements ApplicationRunner {
             productVariationSet.clear();
 
             //apple variation->iphone11 pro
-            product_variation productVariation= new product_variation();
+            Product_variation productVariation= new Product_variation();
             productVariation.setPrice(10000.0f);
             productVariation.setQuantityAvailable(10);
             productVariationRepo.save(productVariation);
 
 
-            product_variation  productVariation2 = new product_variation ();
+            Product_variation productVariation2 = new Product_variation();
             productVariation2.setPrice(112200.0f);
             productVariation2.setQuantityAvailable(21);
             productVariationRepo.save(productVariation2);
@@ -246,7 +246,7 @@ public class Bootstrap implements ApplicationRunner {
             productVariationSet.add(productVariation);
             productVariationSet.add(productVariation2);
 
-            product product1 = new product("iphone 11 pro", "6.1-inch Liquid Retina HD LCD display", "Apple", false, false);
+            Product product1 = new Product("iphone 11 pro", "6.1-inch Liquid Retina HD LCD display", "Apple", false, false);
             product1.setSeller(seller1.getSeller());
             product1.setCategory(phone);
             product1.setIs_active(true);
@@ -254,13 +254,13 @@ public class Bootstrap implements ApplicationRunner {
             productRepo.save(product1);
 
 
-            product product2 = new product("Formal Shirt", "Printed Slim Fit Formal Shirt", "UCB", false, false);
+            Product product2 = new Product("Formal Shirt", "Printed Slim Fit Formal Shirt", "UCB", false, false);
             product2.setSeller(seller2.getSeller());
             product2.setCategory(shirts);
             product2.setIs_active(true);
             productRepo.save(product2);
 
-            product product3 = new product("Casual Shirt", "Regular Fit Casual Shirt", "LP", false, false);
+            Product product3 = new Product("Casual Shirt", "Regular Fit Casual Shirt", "LP", false, false);
             product3.setSeller(seller2.getSeller());
             product3.setCategory(shirts);
             product3.setIs_active(true);

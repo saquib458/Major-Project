@@ -1,7 +1,6 @@
 package com.Ecommerce.Backend.Application.entities;
 
 import javax.persistence.*;
-import java.io.Serializable;
 
 
 @Entity
@@ -18,7 +17,7 @@ public class Cart{
 
 
     @ManyToOne
-    private product_variation product_variation;
+    private Product_variation product_variation;
 
     private int quantity;
 

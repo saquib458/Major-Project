@@ -14,7 +14,7 @@ class ValidationTest {
     public void testPassword()
     {
         Validation validation=new Validation();
-        assertTrue(validation.isValidPassword("S@quib1411"));
+        assertTrue(validation.isValidPassword("saquib."));
     }
 
 

@@ -1,8 +1,8 @@
 package com.Ecommerce.Backend.Application.entities;
 
 
-import com.Ecommerce.Backend.Application.dtoClasses.customerDto;
-import com.Ecommerce.Backend.Application.dtoClasses.sellerDto;
+import com.Ecommerce.Backend.Application.dtoClasses.CustomerDto;
+import com.Ecommerce.Backend.Application.dtoClasses.SellerDto;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -235,10 +235,10 @@ public class User implements UserDetails {
                 '}';
     }
 
-    public sellerDto sellerDetails()
+    public SellerDto sellerDetails()
     {
 
-        sellerDto dto=new sellerDto();
+        SellerDto dto=new SellerDto();
 
         dto.setId(this.getId());
         dto.setFirstName(this.getFirstName());
@@ -255,9 +255,9 @@ public class User implements UserDetails {
 
     }
 
-    public customerDto customerDetails()
+    public CustomerDto customerDetails()
     {
-        customerDto dto=new customerDto();
+        CustomerDto dto=new CustomerDto();
 
         dto.setId(this.getId());
         dto.setFirstName(this.getFirstName());

@@ -1,14 +1,12 @@
 package com.Ecommerce.Backend.Application.controller;
 
 
-import com.Ecommerce.Backend.Application.dtoClasses.userDto;
+import com.Ecommerce.Backend.Application.dtoClasses.UserDto;
 import com.Ecommerce.Backend.Application.entities.User;
 import com.Ecommerce.Backend.Application.repository.UserRepository;
-import com.Ecommerce.Backend.Application.response.ResponseHandler;
-import com.Ecommerce.Backend.Application.service.userService;
+import com.Ecommerce.Backend.Application.service.UserService;
 import com.Ecommerce.Backend.Application.validations.Validation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -23,7 +21,7 @@ public class UserController {
     Validation validation;
 
     @Autowired
-    userService userService;
+    UserService userService;
 
     @Autowired
     UserRepository userRepo;
@@ -54,7 +52,7 @@ public class UserController {
     @PatchMapping("/update/profile")
     @Transactional
     @Rollback(false)
-    public ResponseEntity<Object> updateProfile(@RequestBody userDto dto)
+    public ResponseEntity<Object> updateProfile(@RequestBody UserDto dto)
     {
        return  userService.updateProfile(dto);
 
@@ -63,7 +61,7 @@ public class UserController {
     @PatchMapping("/update/password")
     @Transactional
     @Rollback(false)
-    public ResponseEntity<Object> updatePassword(@RequestBody userDto dto)
+    public ResponseEntity<Object> updatePassword(@RequestBody UserDto dto)
     {
         return userService.updatePassword(dto);
     }
